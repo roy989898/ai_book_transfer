@@ -120,10 +120,10 @@ def process_epub_file(epub_path, max_tokens=4000):
 
 if __name__ == "__main__":
     # Download NLTK data if not already present
-    nltk.download('punkt')
+    nltk.download('punkt_tab')
     # Example usage
     epub_file_path = "b.epub"
-    token_limit = 4000  # Adjust based on your AI model's requirements
+    token_limit = 10000  # Adjust based on your AI model's requirements
 
     results = process_epub_file(epub_file_path, token_limit)
     print(f"Processed {len(results)} chunks with the AI model.")
