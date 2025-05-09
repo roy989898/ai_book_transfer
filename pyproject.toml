@@ -1,0 +1,15 @@
+[project]
+name = "ai_book_2"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "pom", email = "roy989898@gmail.com"},
+]
+dependencies = ["ebooklib>=0.19", "beautifulsoup4>=4.13.4", "nltk>=3.9.1", "tiktoken>=0.9.0", "requests>=2.32.3", "pyright>=1.1.400"]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
