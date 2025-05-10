@@ -6,7 +6,7 @@ from GetChatModel import GetChatModel
 
 
 class EnglishTransfer(BaseModel):
-    result: str = Field(description="number for the restaurant")
+    result: str = Field(description="transfer result")
 
 
 class Robot:
