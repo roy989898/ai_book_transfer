@@ -1,0 +1,3 @@
+class Robot:
+    def transfer_book(self):
+        ...
