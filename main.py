@@ -8,8 +8,6 @@ import tiktoken
 import requests
 
 
-
-
 def strip_html_tags(html_content):
     """Remove HTML tags and get text content."""
     soup = BeautifulSoup(html_content, 'html.parser')
@@ -76,8 +74,10 @@ def split_text_by_tokens(text, max_tokens=4000):
     return chunks
 
 
-def send_to_ai_model(text_chunk, api_url="https://api.example.com/v1/completions", api_key="your_api_key"):
-    print(text_chunk)
+def send_to_ai_model(text_chunk: str, api_url="https://api.example.com/v1/completions", api_key="your_api_key"):
+    # print(text_chunk)
+
+    return text_chunk
     """Send text chunk to an AI model API."""
     # headers = {
     #     "Authorization": f"Bearer {api_key}",
@@ -118,6 +118,11 @@ def process_epub_file(epub_path, max_tokens=4000):
     return results
 
 
+def to_text_file(string: str, file_name: str):
+    with open(file_name, "w") as file:
+        file.write(string)
+
+
 if __name__ == "__main__":
     # Download NLTK data if not already present
     nltk.download('punkt_tab')
@@ -126,4 +131,7 @@ if __name__ == "__main__":
     token_limit = 70000  # Adjust based on your AI model's requirements
 
     results = process_epub_file(epub_file_path, token_limit)
+    joined_result = "".join(results)
+    
+    to_text_file(joined_result, 'new.txt')
     print(f"Processed {len(results)} chunks with the AI model.")
