@@ -77,17 +77,19 @@ def split_text_by_tokens(text, max_tokens=4000):
     return chunks
 
 
-def send_to_ai_model(text_chunk: str, api_url="https://api.example.com/v1/completions", api_key="your_api_key"):
+def send_to_ai_model(text_chunk: str, level: str,
+                     ):
     """Send text chunk to an AI model API."""
     # print(text_chunk)
+    # level = 'b2'
 
     try:
-        r = Robot.transfer_book(text_chunk, "b1")
+        r = Robot.transfer_book(text_chunk, level)
 
         return r
     except:
         print("An exception occurred re try")
-        r = Robot.transfer_book(text_chunk, "b1")
+        r = Robot.transfer_book(text_chunk, level)
 
         return r
 
@@ -109,7 +111,7 @@ def send_to_ai_model(text_chunk: str, api_url="https://api.example.com/v1/comple
     #     return {"error": str(e)}
 
 
-def process_epub_file(epub_path, max_tokens=4000):
+def process_epub_file(epub_path, level: str, max_tokens=4000):
     """Process EPUB file and send chunks to AI model."""
     # Extract text from EPUB
     print(f"Extracting text from {epub_path}...")
@@ -124,7 +126,7 @@ def process_epub_file(epub_path, max_tokens=4000):
     results = []
     for i, chunk in enumerate(chunks):
         print(f"Processing chunk {i + 1}/{len(chunks)}...")
-        result = send_to_ai_model(chunk)
+        result = send_to_ai_model(chunk, level)
         results.append(result)
 
     return results
@@ -139,11 +141,11 @@ if __name__ == "__main__":
     # Download NLTK data if not already present
     nltk.download('punkt_tab')
     # Example usage
-    epub_file_path = "b.epub"
-    token_limit = 10000  # Adjust based on your AI model's requirements
+    epub_file_path = "Why_I_Am_a_Hindu.epub"
+    token_limit = 30000  # Adjust based on your AI model's requirements
 
-    results = process_epub_file(epub_file_path, token_limit)
+    results = process_epub_file(epub_file_path, "b2", token_limit)
     joined_result = "".join(results)
 
-    to_text_file(joined_result, 'new.txt')
+    to_text_file(joined_result, 'Why_I_Am_a_Hindu_b2.txt')
     print(f"Processed {len(results)} chunks with the AI model.")
