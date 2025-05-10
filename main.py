@@ -123,7 +123,7 @@ if __name__ == "__main__":
     nltk.download('punkt_tab')
     # Example usage
     epub_file_path = "b.epub"
-    token_limit = 10000  # Adjust based on your AI model's requirements
+    token_limit = 70000  # Adjust based on your AI model's requirements
 
     results = process_epub_file(epub_file_path, token_limit)
     print(f"Processed {len(results)} chunks with the AI model.")
