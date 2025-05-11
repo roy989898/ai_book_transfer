@@ -18,7 +18,7 @@ class Robot:
         format_instructions = parser.get_format_instructions()
 
         prompt = ChatPromptTemplate.from_messages(
-            [("system", "please transfer the below plot to english level:" + level + " keep all the detail"
+            [("system", "please transfer the below novel content to english, english level:" + level + " keep all the detail"
                                                                                      " and response have to follow format:{format_instructions}"),
              ("human", "{query}")
              ]
