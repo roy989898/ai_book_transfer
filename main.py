@@ -141,11 +141,11 @@ if __name__ == "__main__":
     # Download NLTK data if not already present
     nltk.download('punkt_tab')
     # Example usage
-    epub_file_path = "Why_I_Am_a_Hindu.epub"
-    token_limit = 30000  # Adjust based on your AI model's requirements
+    epub_file_path = "book/1698.epub"
+    token_limit = 3000  # Adjust based on your AI model's requirements
 
     results = process_epub_file(epub_file_path, "b2", token_limit)
     joined_result = "".join(results)
 
-    to_text_file(joined_result, 'Why_I_Am_a_Hindu_b2.txt')
+    to_text_file(joined_result, 'book/1698_en_b2.txt')
     print(f"Processed {len(results)} chunks with the AI model.")
