@@ -1,3 +1,6 @@
 
 .env
 *.pyc
+/book/*.epub
+/book/*.txt
+/book/*.md
