@@ -38,8 +38,12 @@ def count_tokens(text, encoding_name="cl100k_base"):
 
 
 def sent_tokenize_cn(text: str) -> list[str]:
-    r = text.split("(。)")
-    return r
+    r = text.split("。")
+    new_r = []
+    for sentence in r:
+        d = sentence + "。"
+        new_r.append(d)
+    return new_r
 
 
 # 。
