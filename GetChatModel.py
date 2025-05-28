@@ -36,7 +36,7 @@ class GetChatModel(object):
         # key = getpass.getpass(key)
         os.environ["GOOGLE_API_KEY"] = key  # pyright: ignore [reportArgumentType]
         llm = ChatGoogleGenerativeAI(
-            model="gemini-2.5-flash-preview-04-17",
+            model="gemini-2.5-flash-preview-05-20",
         )
 
         return llm

@@ -37,7 +37,13 @@ def count_tokens(text, encoding_name="cl100k_base"):
     return len(encoding.encode(text))
 
 
-def split_text_by_tokens(text, max_tokens=4000):
+def sent_tokenize_cn(text: str) -> list[str]:
+    r = text.split("(。)")
+    return r
+
+
+# 。
+def split_text_by_tokens(text: str, max_tokens=4000, for_chinese=False):
     """Split text by token count while preserving complete sentences."""
     sentences = sent_tokenize(text)
     chunks = []
@@ -141,11 +147,11 @@ if __name__ == "__main__":
     # Download NLTK data if not already present
     nltk.download('punkt_tab')
     # Example usage
-    epub_file_path = "book/1698.epub"
-    token_limit = 3000  # Adjust based on your AI model's requirements
+    epub_file_path = "book/night_fast_1.epub"
+    token_limit = 10000  # Adjust based on your AI model's requirements
 
-    results = process_epub_file(epub_file_path, "b2", token_limit)
+    results = process_epub_file(epub_file_path, "b1", token_limit)
     joined_result = "".join(results)
 
-    to_text_file(joined_result, 'book/1698_en_b2.txt')
+    to_text_file(joined_result, 'book/night_fast_1_b1_v2.txt')
     print(f"Processed {len(results)} chunks with the AI model.")
