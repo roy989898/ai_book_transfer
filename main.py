@@ -49,7 +49,11 @@ def sent_tokenize_cn(text: str) -> list[str]:
 # 。
 def split_text_by_tokens(text: str, max_tokens=4000, for_chinese=False):
     """Split text by token count while preserving complete sentences."""
-    sentences = sent_tokenize(text)
+    sentences = []
+    if for_chinese:
+        sentences = sent_tokenize_cn(text)
+    else:
+        sentences = sent_tokenize(text)
     chunks = []
     current_chunk = []
     current_token_count = 0
@@ -121,7 +125,7 @@ def send_to_ai_model(text_chunk: str, level: str,
     #     return {"error": str(e)}
 
 
-def process_epub_file(epub_path, level: str, max_tokens=4000):
+def process_epub_file(epub_path, level: str, max_tokens=4000, is_chinese=False):
     """Process EPUB file and send chunks to AI model."""
     # Extract text from EPUB
     print(f"Extracting text from {epub_path}...")
@@ -129,7 +133,7 @@ def process_epub_file(epub_path, level: str, max_tokens=4000):
 
     # Split text into chunks by token count
     print("Splitting text into chunks...")
-    chunks = split_text_by_tokens(full_text, max_tokens)
+    chunks = split_text_by_tokens(full_text, max_tokens, is_chinese)
     print(f"Split into {len(chunks)} chunks.")
 
     # Process each chunk with AI model
@@ -154,8 +158,8 @@ if __name__ == "__main__":
     epub_file_path = "book/night_fast_1.epub"
     token_limit = 10000  # Adjust based on your AI model's requirements
 
-    results = process_epub_file(epub_file_path, "b1", token_limit)
+    results = process_epub_file(epub_file_path, "b1", token_limit, is_chinese=True)
     joined_result = "".join(results)
 
-    to_text_file(joined_result, 'book/night_fast_1_b1_v2.txt')
+    to_text_file(joined_result, 'book/testing.txt')
     print(f"Processed {len(results)} chunks with the AI model.")
